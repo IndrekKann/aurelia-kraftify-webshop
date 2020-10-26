@@ -1,0 +1,36 @@
+<template>
+
+
+    <h1>${langResources[state.selectedCulture.code].login}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <section>
+                <form id="account" method="post" submit.trigger="onSubmit($event)">
+                    <h4 if.bind="_errorMessage != null" style="color:red;">${_errorMessage}</h4>
+                    <hr />
+                    <div class="form-group">
+                        <label for="Input_Email">${langResources[state.selectedCulture.code].email}</label>
+                        <input class="form-control" type="email" value.bind="_email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Input_Password">${langResources[state.selectedCulture.code].password}</label>
+                        <input class="form-control" type="password" value.bind="_password" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">${langResources[state.selectedCulture.code].login}</button>
+                    </div>
+                    <div class="form-group">
+                        <p>
+                            <a id="forgot-password" href="/Identity/Account/ForgotPassword">${langResources[state.selectedCulture.code].forgotPassword}</a>
+                        </p>
+                        <p>
+                            <a route-href="route: account-register; params.bind: {}">${langResources[state.selectedCulture.code].registerAsANew}</a>
+                        </p>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+    </div>
+</template>

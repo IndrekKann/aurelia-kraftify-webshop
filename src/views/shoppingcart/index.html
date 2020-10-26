@@ -1,0 +1,63 @@
+<template>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">${langResources[state.selectedCulture.code].image}</th>
+                            <th scope="col">${langResources[state.selectedCulture.code].name}</th>
+                            <th scope="col">${langResources[state.selectedCulture.code].price}</th>
+                            <th scope="col">${langResources[state.selectedCulture.code].quantity}</th>
+                            <th scope="col">${langResources[state.selectedCulture.code].total}</th>
+                            <th scope="col">${langResources[state.selectedCulture.code].remove}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr repeat.for="product of products">
+                            <td><img src="/uploads/${product.image}" width="50px" height="50px" alt="${product.product}"/> </td>
+                            <td>${product.product}</td>
+                            <td>${product.cost.toFixed(2)} ${product.symbol}</td>
+                            <td>
+                                <div class="quantity">
+                                    <input click.delegate="increaseQuantity(product.productId)" type="button" value="+" class="plus">
+                                    <input type="number" step="1" max="99" min="1" value="${product.quantity}" title="Qty" class="qty" size="4">
+                                    <input click.delegate="decreaseQuantity(product)" type="button" value="-" class="minus">
+                                </div>
+                            </td>
+                            <td>${product.totalCost.toFixed(2)} ${product.symbol}</td>
+                            <td>
+                                <a click.delegate="removeFromShoppingCart(product.id)" class="btn btn-sm btn-danger" ><i class="fa fa-trash text-white"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>${langResources[state.selectedCulture.code].total}</strong></td>
+                            <td><strong>${cartTotal.toFixed(2)} €</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col mb-2">
+                <div class="row">
+                    <div class="col-sm-12  col-md-6">
+                        <a href="/products" class="btn btn-lg btn-block btn-success">${langResources[state.selectedCulture.code].continueShopping}</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6 text-right text-white">
+                        <a href="/orders" class="btn btn-lg btn-block btn-success">${langResources[state.selectedCulture.code].checkout}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>

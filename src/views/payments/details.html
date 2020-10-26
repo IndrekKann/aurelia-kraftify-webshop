@@ -1,0 +1,111 @@
+<template>
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    ${langResources[state.selectedCulture.code].image}
+                                </th>
+                                <th scope="col">
+                                    ${langResources[state.selectedCulture.code].name}
+                                </th>
+                                <th scope="col">
+                                    ${langResources[state.selectedCulture.code].price}
+                                </th>
+                                <th scope="col">
+                                    ${langResources[state.selectedCulture.code].quantity}
+                                </th>
+                                <th scope="col">
+                                    ${langResources[state.selectedCulture.code].total}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr repeat.for="product of products">
+                                <td>
+                                    <img
+                                        src="/uploads/${product.image}"
+                                        width="50px"
+                                        height="50px"
+                                        alt="${product.product}"
+                                    />
+                                </td>
+                                <td>${product.product}</td>
+                                <td>${product.cost} ${product.symbol}</td>
+                                <td>
+                                    <input
+                                        class="form-control"
+                                        type="number"
+                                        step="1"
+                                        min="1"
+                                        value="${product.quantity}"
+                                    />
+                                </td>
+                                <td>${product.totalCost} ${product.symbol}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <strong
+                                        >${langResources[state.selectedCulture.code].total}</strong
+                                    >
+                                </td>
+                                <td>
+                                    <strong>${cartTotal.toFixed(2)} €</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>${langResources[state.selectedCulture.code].receiver}</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">
+                    ${langResources[state.selectedCulture.code].name}
+                </th>
+                <th scope="col">${payment.firstName} ${payment.lastName}</th>
+            </tr>
+            <tr>
+                <th scope="col">
+                    ${langResources[state.selectedCulture.code].email}
+                </th>
+                <th scope="col">${payment.email}</th>
+            </tr>
+            <tr>
+                <th scope="col">
+                    ${langResources[state.selectedCulture.code].phone}
+                </th>
+                <th scope="col">${payment.phone}</th>
+            </tr>
+            <tr>
+                <th scope="col">
+                    ${langResources[state.selectedCulture.code].location}
+                </th>
+                <th scope="col">${payment.location}</th>
+            </tr>
+            <tr>
+                <th scope="col">
+                    ${langResources[state.selectedCulture.code].bank}
+                </th>
+                <th scope="col">${payment.paymentType}</th>
+            </tr>
+        </thead>
+    </table>
+
+    <div>
+        <a href="payments" class="btn btn-primary"
+            >${langResources[state.selectedCulture.code].backToOrders}</a
+        >
+    </div>
+</template>

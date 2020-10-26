@@ -1,0 +1,105 @@
+<template>
+    <table class="table">
+        <tbody>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h1 class="my-4">${langResources[state.selectedCulture.code].categories}</h1>
+                    <ul class="list-group" repeat.for="productType of productTypes">
+                        <li click.delegate="changeSearchType(productType.id)" class="list-group-item list-group-item-action">${productType.name}</li>
+                    </ul>
+                    <br>
+
+                    <div>
+                        <a if.bind="appState.getUserRole.includes('admin')" href="/products/create" class="btn btn-primary">${langResources[state.selectedCulture.code].createProduct}</a>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-9">
+                    <br>
+                    <div class="form-inline">
+                        <form>
+                            <input type="text" value.bind="search" class="form-control form-control-sm mr-3 w-75" id="keyword">
+                            <button click.delegate="searchProducts()" class="btn btn-primary">${langResources[state.selectedCulture.code].search}</button>
+                            <div class="form-inline">
+                                <h4 class="my-4">${langResources[state.selectedCulture.code].order}</h4>
+                                <div class="m-4">
+                                    <select value.bind="order" class="form-control">
+                                        <option></option>
+                                        <option value="1">${langResources[state.selectedCulture.code].nameAZ}</option>
+                                        <option value="2">${langResources[state.selectedCulture.code].nameZA}</option>
+                                        <option value="3">${langResources[state.selectedCulture.code].priceLowHigh}</option>
+                                        <option value="4">${langResources[state.selectedCulture.code].priceHighLow}</option>
+                                    </select>
+                                </div>
+
+                                <h4 class="my-4">${langResources[state.selectedCulture.code].productsPerPage}</h4>
+                                <div class="m-4">
+                                    <select value.bind="limit" class="form-control">
+                                        <option>18</option>
+                                        <option>36</option>
+                                        <option>72</option>
+                                    </select>
+                                </div>
+                                <button click.delegate="resetFilters()" class="btn btn-primary">${langResources[state.selectedCulture.code].cancel}</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4" repeat.for="product of products" model.bind="product.Id">
+                            <div class="card h-100">
+                                <a><img class="card-img-top" src="/uploads/${product.image}" alt="${product.name}"></a>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="/products/details/${product.id}?culture=${state.selectedCulture.code}">${product.name}</a>
+                                    </h4>
+                                    <p>
+                                        <a href="?searchType=${product.productTypeId}">${product.productType}</a>
+                                    </p>
+                                    <p>
+                                        ${product.description}
+                                    </p>
+                                    <h4>
+                                        ${product.cost} ${product.symbol}
+                                    </h4>
+                                </div>
+                                <div class="card-footer">
+                                    <a if.bind="appState.jwt != null" click.delegate="addToShoppingCart(product.id)" class="btn btn-primary text-white" role="button">${langResources[state.selectedCulture.code].addToShoppingCart}</a>
+                                    <a if.bind="appState.jwt == null" href="account/login" class="btn btn-primary text-white" role="button">${langResources[state.selectedCulture.code].addToShoppingCart}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a click.delegate="previousPage()" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+
+                                <li class="page-item" repeat.for="page of pagination">
+                                    <a click.delegate="pageChosen(page)" class="page-link">${page}</a>
+                                </li>
+
+                            <li class="page-item">
+                                <a click.delegate="nextPage()" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        </tbody>
+    </table>
+
+</template>

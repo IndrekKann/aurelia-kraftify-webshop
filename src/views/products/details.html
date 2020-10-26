@@ -1,0 +1,24 @@
+<template>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card mt-4">
+                    <img class="card-img-top-detail img-fluid" src="/uploads/${product.image}" alt="@Model.Product!.Name">
+                    <div class="card-body">
+                        <h3 class="card-title">${product.name} - ${product.productType}</h3>
+                        <h4>${product.cost} ${product.symbol}</h4>
+                        <p>${product.description}</p>
+                        <div>
+                            <a if.bind="appState.jwt != null" click.delegate="addToShoppingCart(product.id)" class="btn btn-primary text-white" role="button">${langResources[state.selectedCulture.code].addToShoppingCart}</a>
+                            <a if.bind="appState.jwt == null" href="account/login" class="btn btn-primary text-white" role="button">${langResources[state.selectedCulture.code].addToShoppingCart}</a>
+                            <a href="/products" class="btn btn-primary text-white" role="button">${langResources[state.selectedCulture.code].backToProducts}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>

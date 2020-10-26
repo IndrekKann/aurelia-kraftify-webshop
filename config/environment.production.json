@@ -1,0 +1,8 @@
+{
+    "debug": false,
+    "testing": false,
+    "logLevel": "debug",
+    "backendUrl": "http://localhost:5000/api/v1.0/",
+    "backendUrlLocal": "http://localhost:5000/api/v1.0/",
+    "swaggerUrl": "http://localhost:5000/swagger/index.html"
+}

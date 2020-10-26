@@ -1,0 +1,50 @@
+<template>
+
+    <h1>${langResources[state.selectedCulture.code].activeOrders}
+    </h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                ${langResources[state.selectedCulture.code].email}
+            </th>
+            <th>
+                ${langResources[state.selectedCulture.code].orderNumber}
+            </th>
+            <th>
+                ${langResources[state.selectedCulture.code].paymentType}
+            </th>
+            <th>
+                ${langResources[state.selectedCulture.code].location}
+            </th>
+            <th>
+                ${langResources[state.selectedCulture.code].date}
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="payment of payments">
+            <td>
+                ${payment.email}
+            </td>
+            <td>
+                ${payment.orderNumber}
+            </td>
+            <td>
+                ${payment.paymentType}
+            </td>
+            <td>
+                ${payment.location}
+            </td>
+            <td>
+                ${payment.date}
+            </td>
+            <td>
+                <a href="/payments/details/${payment.id}?culture=${state.selectedCulture.code}" class="btn btn-primary">${langResources[state.selectedCulture.code].viewOrder}</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</template>

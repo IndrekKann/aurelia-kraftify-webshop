@@ -1,0 +1,46 @@
+<template>
+
+    <h1>${langResources[state.selectedCulture.code].createProduct}</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form submit.trigger="onSubmit($event)">
+
+                <div class="form-group">
+                    <label class="control-label" for="Name">${langResources[state.selectedCulture.code].name}</label>
+                    <input class="form-control" type="text" id="Name" maxlength="64" value.bind="_name" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="Description">${langResources[state.selectedCulture.code].description}</label>
+                    <input class="form-control" type="text" id="Description" maxlength="64" value.bind="_description" />
+                </div>
+
+                <div class="form-group">
+                    ${langResources[state.selectedCulture.code].productType}
+                    <select class="form-control" id="productTypes" value.bind="_productTypeId">
+                        <option repeat.for="productType of _productTypes" model.bind="productType.id">${productType.name}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    ${langResources[state.selectedCulture.code].price}
+                    <select class="form-control" id="prices" value.bind="_priceId">
+                        <option repeat.for="price of _prices" model.bind="price.id">${price.cost}</option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="${langResources[state.selectedCulture.code].createNew}" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a route-href="route: products-index; params.bind: { }">${langResources[state.selectedCulture.code].back}</a>
+    </div>
+
+</template>

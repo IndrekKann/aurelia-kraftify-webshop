@@ -1,0 +1,42 @@
+<template>
+    <h1>${langResources[state.selectedCulture.code].register}</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form id="account" method="post" submit.trigger="onSubmit($event)">
+                <h4>${langResources[state.selectedCulture.code].createNewAccount}</h4>
+                <hr />
+                <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
+                    <ul>
+                        <li style="display:none"></li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label for="Input_FirstName">${langResources[state.selectedCulture.code].firstName}</label>
+                    <input class="form-control" type="firstName" value.bind="_firstName" />
+                </div>
+                <div class="form-group">
+                    <label for="Input_LastName">${langResources[state.selectedCulture.code].lastName}</label>
+                    <input class="form-control" type="lastName" value.bind="_lastName" />
+                </div>
+                <div class="form-group">
+                    <label for="Input_Email">${langResources[state.selectedCulture.code].email}</label>
+                    <input class="form-control" type="email" value.bind="_email" />
+                </div>
+                <div class="form-group">
+                    <label for="Input_Phone">${langResources[state.selectedCulture.code].phone}</label>
+                    <input class="form-control" type="phone" value.bind="_phone" />
+                </div>
+                <div class="form-group">
+                    <label for="Input_Password">${langResources[state.selectedCulture.code].password}</label>
+                    <input class="form-control" type="password" value.bind="_password" />
+                </div>
+                <div class="form-group">
+                    <label for="Input_ConfirmPassword">${langResources[state.selectedCulture.code].confirmPassword}</label>
+                    <input class="form-control" type="password" value.bind="_confirmPassword" />
+                </div>
+                <button type="submit" class="btn btn-primary">${langResources[state.selectedCulture.code].register}</button>
+        </div>
+    </div>
+
+</template>
